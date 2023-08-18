@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import uuid
 import copy
 from gpsdclient import GPSDClient
+from fledge.common import logger
 
 # Fledge documentation
 # http://fledge-iot.readthedocs.io/
@@ -15,7 +16,7 @@ _DEFAULT_CONFIG = {
     'plugin': {
         'description': 'Python module name of the plugin to load',
         'type': 'string',
-        'default': 'bme680'
+        'default': 'bme680_gps'
     },
     'gps': {
         'description': 'Check to enable lat/long readings',
@@ -41,10 +42,8 @@ _LOGGER = logger.setup(__name__)
 
 
 def plugin_info():
-
-
     return {
-        'name': 'bme680',
+        'name': 'bme680_gps',
         'version': '1.0',
         'mode': 'poll',
         'type': 'south',
